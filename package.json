@@ -1,6 +1,6 @@
 {
   "name": "@any-design/safari-vh-patch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typescript library boilerplate",
   "main": "dist/safari-vh-patch.iife.js",
   "typings": "dist/types/index.d.ts",
