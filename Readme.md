@@ -1,6 +1,6 @@
 # @any-design/safari-vh-patch
 
-`vh` unit is not accurate when page is rendered by Safari, `100vh` will include the toolbar.
+`vh` unit is not accurate when page is rendered by Safari, when you use `100vh`, the `100vh` actually includes the toolbar.
 
 This patch will fix this issue automatically when user is using Safari to browse your site.
 

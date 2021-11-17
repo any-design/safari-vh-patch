@@ -16,6 +16,11 @@
   },
   "author": "BackRunner",
   "license": "MIT",
+  "homepage": "https://github.com/any-design/safari-vh-patch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/any-design/safari-vh-patch.git"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-json": "^4.1.0",
