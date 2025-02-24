@@ -1,18 +1,32 @@
 {
   "name": "@any-design/safari-vh-patch",
-  "version": "0.1.1",
-  "description": "Typescript library boilerplate",
-  "main": "dist/safari-vh-patch.iife.js",
-  "typings": "dist/types/index.d.ts",
+  "version": "0.2.0",
+  "description": "A patch for Safari viewport height with PostCSS plugin",
+  "main": "dist/plugin.cjs",
+  "module": "dist/plugin.mjs",
+  "browser": "dist/safari-vh-patch.min.js",
+  "type": "module",
+  "typings": "dist/types/plugin.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/plugin.cjs",
+      "import": "./dist/plugin.mjs"
+    },
+    "./runtime": "./dist/safari-vh-patch.min.js"
+  },
+  "files": [
+    "dist"
+  ],
   "keywords": [
-    "lib",
-    "ui",
+    "postcss-plugin",
     "safari",
+    "viewport",
+    "vh",
     "css"
   ],
   "scripts": {
     "watch": "rollup -c rollup.config.ts -w",
-    "build": "rimraf ./dist && tsc --module commonjs && rollup -c rollup.config.ts && rimraf ./dist/lib"
+    "build": "rimraf ./dist && rollup -c rollup.config.ts --configPlugin typescript"
   },
   "author": "BackRunner",
   "license": "MIT",
@@ -22,21 +36,21 @@
     "url": "https://github.com/any-design/safari-vh-patch.git"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.6",
-    "@types/node": "^16.11.7",
-    "@typescript-eslint/eslint-plugin": "^5.4.0",
-    "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.2.0",
-    "eslint-config-alloy": "^4.4.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.60.0",
-    "rollup-plugin-sourcemaps": "^0.6.3",
-    "rollup-plugin-typescript2": "^0.31.0",
-    "tslib": "^2.3.1",
-    "typescript": "^4.4.4"
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "eslint": "^9.21.0",
+    "eslint-config-alloy": "^5.1.2",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8.5.3",
+    "prettier": "^3.5.2",
+    "rimraf": "^5.0.10",
+    "rollup": "^4.34.8",
+    "typescript": "^5.7.3"
   }
 }

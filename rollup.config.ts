@@ -1,16 +1,44 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import sourceMaps from 'rollup-plugin-sourcemaps';
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
+import terser from '@rollup/plugin-terser';
 import json from '@rollup/plugin-json';
-import pkg from './package.json';
 
-export default {
-  input: `src/main.ts`,
-  output: [{ file: pkg.main, name: pkg.name, format: 'iife', sourcemap: true, extend: true }],
-  external: [],
-  watch: {
-    include: 'src/**',
-  },
-  plugins: [json(), typescript({ useTsconfigDeclarationDir: true }), commonjs(), resolve(), sourceMaps()],
+// 共享配置
+const sharedConfig = {
+  plugins: [resolve(), json(), commonjs(), typescript()],
+  external: ['postcss'],
+  sourcemap: true,
 };
+
+export default [
+  {
+    input: `src/main.ts`,
+    output: [{
+      file: 'dist/safari-vh-patch.min.js',
+      name: 'safari-vh-patch',
+      format: 'iife',
+      sourcemap: true,
+      extend: true
+    }],
+    ...sharedConfig,
+    plugins: [...sharedConfig.plugins, terser()],
+  },
+
+  {
+    input: 'src/plugin.ts',
+    output: [
+      {
+        file: 'dist/plugin.cjs',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: 'dist/plugin.mjs',
+        format: 'es',
+        sourcemap: true,
+      }
+    ],
+    ...sharedConfig,
+  }
+];
