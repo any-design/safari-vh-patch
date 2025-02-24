@@ -6,9 +6,8 @@ import json from '@rollup/plugin-json';
 
 // 共享配置
 const sharedConfig = {
-  plugins: [resolve(), json(), commonjs(), typescript()],
+  plugins: [resolve(), json(), commonjs(), typescript({ sourceMap: true })],
   external: ['postcss'],
-  sourcemap: true,
 };
 
 export default [
@@ -22,7 +21,7 @@ export default [
       extend: true
     }],
     ...sharedConfig,
-    plugins: [...sharedConfig.plugins, terser()],
+    plugins: [...sharedConfig.plugins, terser({ sourceMap: true })],
   },
 
   {

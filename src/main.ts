@@ -6,6 +6,12 @@ if (isSafari && !isStandAlone) {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
-  window.addEventListener('resize', setVh);
+
+  // Check if orientationchange event is supported
+  if ('onorientationchange' in window) {
+    window.addEventListener('orientationchange', setVh);
+  } else {
+    (window as Window).addEventListener('resize', setVh);
+  }
   setVh();
 }
